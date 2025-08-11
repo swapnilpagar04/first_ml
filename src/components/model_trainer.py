@@ -69,3 +69,24 @@ class ModelTrainer:
 
         except Exception as e:
             raise CustomException("Error in initiate_model_trainer method", sys) from e
+
+if __name__ == "__main__":
+    from src.components.data_transformation import DataTransformation
+
+    # Paths to your training & testing CSV files
+    train_csv_path = "artifacts/train.csv"
+    test_csv_path = "artifacts/test.csv"
+
+
+    # Step 1: Run data transformation
+    data_transformation = DataTransformation()
+    train_arr, test_arr, _ = data_transformation.initiate_data_transformation(
+        train_path=train_csv_path,
+        test_path=test_csv_path
+    )
+
+    # Step 2: Train model
+    trainer = ModelTrainer()
+    best_model_name, best_score = trainer.initiate_model_trainer(train_arr, test_arr)
+
+    print(f"Best Model: {best_model_name} with R2 Score: {best_score}")

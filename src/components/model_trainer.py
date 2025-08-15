@@ -13,7 +13,7 @@ from sklearn.tree import DecisionTreeRegressor
 from xgboost import XGBRegressor
 
 # Custom utilities
-from src.exeption import CustomException
+from src.exception import CustomException
 from src.logger import logging
 from src.utils import save_object
 
